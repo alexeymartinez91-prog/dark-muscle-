@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dark Muscle">
+<meta name="description" content="DARK MUSCLE TRACKER: registra tus entrenamientos de gimnasio, mide tu progreso y aprende mientras entrenas.">
+<title>Dark Muscle Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e10600'/%3E%3Cpath d='M18 22v20M46 22v20M11 27v10M53 27v10M18 32h28' stroke='%23fff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== CABECERA ===================== -->
+<header class="topbar">
+  <div class="brand">
+    <span class="logo" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M6 7v10M18 7v10M3 9.5v5M21 9.5v5M6 12h12"/></svg></span>
+    <span class="brand-txt">Dark Muscle <b>Tracker</b></span>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" data-action="openCalc" data-t="1rm" aria-label="Calculadoras"><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7h7M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h7"/></svg></button>
+    <button class="icon-btn" data-action="timerStart" aria-label="Iniciar temporizador de descanso"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></button>
+  </div>
+</header>
+
+<!-- ===================== CONTENIDO (se pinta por JS) ===================== -->
+<main id="main" tabindex="-1">
+  <div class="card" style="margin-top:8px">
+    <p style="font-weight:800;margin-bottom:8px">Cargando Dark Muscle Tracker…</p>
+    <p class="muted small">Si esta pantalla no cambia, la estás viendo en una vista previa que no ejecuta JavaScript (app Archivos, vista previa de un adjunto, correo…). Ábrela en Safari desde su enlace de GitHub Pages.</p>
+  </div>
+</main>
+
+<!-- ===================== TEMPORIZADOR DE DESCANSO ===================== -->
+<div id="timerBar" class="timer-bar hidden" role="timer" aria-live="polite">
+  <div class="tb-prog"><i id="tbFill"></i></div>
+  <div class="tb-row">
+    <div><div class="tb-label">Descanso</div><div class="tb-time" id="tbTime">1:30</div></div>
+    <button class="tb-btn" data-action="timerAdd" data-s="-15" aria-label="Restar 15 segundos">−15</button>
+    <button class="tb-btn" data-action="timerAdd" data-s="15" aria-label="Sumar 15 segundos">+15</button>
+    <button class="tb-btn" data-action="timerStop" aria-label="Detener temporizador"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+</div>
+
+<!-- ===================== NAVEGACIÓN INFERIOR ===================== -->
+<nav class="tabbar" role="tablist" aria-label="Secciones" id="tabbar"></nav>
+
+<!-- ===================== MODAL / HOJA INFERIOR ===================== -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" data-action="closeModal"></div>
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2 id="modalTitle"></h2>
+      <button class="icon-btn" data-action="closeModal" aria-label="Cerrar"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="sheet-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+<input type="file" id="importFile" accept="application/json,.json" hidden>
+
+<script src="app.js"></script>
+</body>
+</html>
